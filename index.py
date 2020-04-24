@@ -114,7 +114,6 @@ class Student:
     ON s.id_class = g.id
     WHERE g.name = "{group}"
     ORDER BY points ASC'''
-    print(query)
     db_rows = self.run_query(query)
 
     for row in db_rows:
@@ -222,9 +221,9 @@ class Student:
     Button(self.edit_wind, text='Actualizar', command=lambda: self.edit_records(new_name.get(), new_points.get(), old_name, old_points)).grid(row=4, column=0, columnspan=3, sticky=W+E)
   
   def edit_records(self, new_name, new_points, old_name, old_points):
-    if len(new_name) <= 0 and len(new_points) <= 0:
+    if len(new_name) <= 0 or len(new_points) <= 0:
       self.message['text'] = ''
-      self.message['fg'] = 'green'
+      self.message['fg'] = 'blue'
       self.message['text'] = 'No se han añadido datos nuevos.'
       self.edit_wind.destroy()
     else:
